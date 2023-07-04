@@ -40,20 +40,19 @@ export default function Layout({
           zIndex: 5,
         }}
       >
-        {!isSearchOpen && (
-          <Pressable
-            onPress={canGoBack ? goBack : () => null}
-            style={{
-              alignItems: "center",
-              borderRadius: 40,
-              height: 40,
-              justifyContent: "center",
-              width: 40,
-            }}
-          >
-            {canGoBack && <Feather name="arrow-left" color="white" size={24} />}
-          </Pressable>
-        )}
+        <Pressable
+          disabled={isSearchOpen}
+          onPress={canGoBack ? goBack : () => null}
+          style={{
+            alignItems: "center",
+            borderRadius: 40,
+            height: 40,
+            justifyContent: "center",
+            width: 40,
+          }}
+        >
+          {canGoBack && <Feather name="arrow-left" color="white" size={24} />}
+        </Pressable>
         <View
           style={{
             alignItems: "center",
@@ -65,13 +64,22 @@ export default function Layout({
             style={{
               color: "#fff",
               fontFamily: "TitilliumWeb_400Regular",
-              fontSize: 18,
+              fontSize: 20,
+              paddingHorizontal: 8,
+              textAlign: "left",
+              width: "100%",
             }}
+            numberOfLines={1}
           >
             {title}
           </Text>
         </View>
-        {showSearch && <Search onOpen={() => setSearchOpen(true)} />}
+        {showSearch && (
+          <Search
+            onOpen={() => setSearchOpen(true)}
+            onClose={() => setSearchOpen(false)}
+          />
+        )}
       </View>
       {children}
     </SafeAreaView>
@@ -80,10 +88,12 @@ export default function Layout({
 
 function Search({
   onChangeText,
+  onClose,
   onOpen,
   isOpen,
 }: {
   onOpen: () => void;
+  onClose: () => void;
   onChangeText?: (text: string) => void;
   isOpen?: boolean;
 }) {
@@ -97,6 +107,7 @@ function Search({
       useNativeDriver: true,
     }).start(() => {
       inputRef.current.focus();
+      onOpen();
     });
   };
 
@@ -107,6 +118,7 @@ function Search({
       useNativeDriver: true,
     }).start(() => {
       inputRef.current.clear();
+      onClose();
     });
   };
 
@@ -121,6 +133,31 @@ function Search({
       >
         <Animated.View
           style={{
+            opacity: slideAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, 0],
+            }),
+          }}
+        >
+          <Pressable
+            onPress={slideIn}
+            disabled={isOpen}
+            style={{
+              alignItems: "center",
+              borderRadius: 40,
+              height: 40,
+              justifyContent: "center",
+              position: "absolute",
+              right: -44,
+              width: 40,
+              zIndex: 1,
+            }}
+          >
+            <Feather name="search" color="#fff" size={24} />
+          </Pressable>
+        </Animated.View>
+        <Animated.View
+          style={{
             backgroundColor: "#171717",
             transform: [
               {
@@ -132,31 +169,6 @@ function Search({
             ],
           }}
         >
-          <Animated.View
-            style={{
-              opacity: slideAnim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [1, 0],
-              }),
-            }}
-          >
-            <Pressable
-              onPress={slideIn}
-              disabled={isOpen}
-              style={{
-                alignItems: "center",
-                borderRadius: 40,
-                height: 40,
-                justifyContent: "center",
-                position: "absolute",
-                right: windowWidth - 40,
-                width: 40,
-                zIndex: 1,
-              }}
-            >
-              <Feather name="search" color="#fff" size={24} />
-            </Pressable>
-          </Animated.View>
           <View
             style={{
               alignItems: "center",
@@ -183,6 +195,7 @@ function Search({
               width: windowWidth - 64,
             }}
             keyboardType="web-search"
+            placeholder="Search for movie by name"
           />
           <Pressable
             onPress={slideOut}
