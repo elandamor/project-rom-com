@@ -37,7 +37,7 @@ export default function HomeScreen({ navigation }: Props) {
   }, [currentPage]);
 
   return (
-    <Layout>
+    <Layout showSearch title="Romantic Comedy">
       <FlatList
         data={movies}
         numColumns={3}
