@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e1977b12-4eb5-4d7c-8e98-b48dcf11822a"
+      }
+    },
+    "owner": "elandamor"
   }
 }
