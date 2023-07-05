@@ -1,4 +1,5 @@
 export type NavigationParamList = {
+  Landing: undefined;
   Home: undefined;
   Details: Movie;
 };

@@ -1,5 +1,6 @@
 // @ts-nocheck
 
+import movieIcon from "./movie.png";
 import placeholderPoster from "./placeholder_for_missing_posters.png";
 import poster1 from "./poster1.jpg";
 import poster2 from "./poster2.jpg";
@@ -22,4 +23,5 @@ export default {
   poster7,
   poster8,
   poster9,
+  movieIcon,
 };

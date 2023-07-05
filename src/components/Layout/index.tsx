@@ -105,7 +105,6 @@ function Search({
   onChangeText?: (text: string) => void;
   isOpen?: boolean;
 }) {
-  const initialRef = useRef<View>();
   const inputRef = useRef<TextInput>();
   const slideAnim = useRef(new Animated.Value(0)).current;
 
@@ -137,18 +136,27 @@ function Search({
   return (
     <Fragment>
       <View style={{ height: 40, width: 40 }} />
-      <View
+      <Animated.View
         style={{
-          left: 12,
+          left: 56,
           position: "absolute",
         }}
       >
         <Animated.View
           style={{
+            left: -48,
             opacity: slideAnim.interpolate({
               inputRange: [0, 1],
               outputRange: [1, 0],
             }),
+            // transform: [
+            //   {
+            //     translateX: slideAnim.interpolate({
+            //       inputRange: [0, 1],
+            //       outputRange: [-48, 0],
+            //     }),
+            //   },
+            // ],
           }}
         >
           <Pressable
@@ -175,7 +183,7 @@ function Search({
               {
                 translateX: slideAnim.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [windowWidth, 0],
+                  outputRange: [windowWidth, -48],
                 }),
               },
             ],
@@ -225,7 +233,7 @@ function Search({
             <Feather name="x" color="#FFF" size={24} />
           </Pressable>
         </Animated.View>
-      </View>
+      </Animated.View>
     </Fragment>
   );
 }
