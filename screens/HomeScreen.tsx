@@ -1,6 +1,6 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
-import { FlatList, Pressable } from "react-native";
+import { FlatList, Pressable, Text, View } from "react-native";
 import { Layout, MovieCard } from "../components";
 import { Movie, NavigationParamList } from "../types";
 
@@ -11,6 +11,14 @@ interface Props {
 export default function HomeScreen({ navigation }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [movies, setMovies] = useState<Array<Movie>>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredMovies =
+    searchTerm.length > 2
+      ? movies.filter(({ name }) =>
+          name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : movies;
 
   useEffect(() => {
     let movies = [];
@@ -37,16 +45,18 @@ export default function HomeScreen({ navigation }: Props) {
   }, [currentPage]);
 
   return (
-    <Layout canGoBack showSearch title="Romantic Comedy">
+    <Layout
+      canGoBack
+      showSearch
+      title="Romantic Comedy"
+      setSearchTerm={setSearchTerm}
+    >
       <FlatList
-        data={movies}
+        data={filteredMovies}
         numColumns={3}
-        renderItem={({ item: movie, index }) => {
+        renderItem={({ item: movie }) => {
           return (
-            <Pressable
-              key={index}
-              onPress={() => navigation.navigate("Details", movie)}
-            >
+            <Pressable onPress={() => navigation.navigate("Details", movie)}>
               <MovieCard data={movie} />
             </Pressable>
           );
@@ -57,6 +67,34 @@ export default function HomeScreen({ navigation }: Props) {
         onEndReachedThreshold={0.5}
         contentContainerStyle={{ paddingBottom: 30, rowGap: 30 }}
         columnWrapperStyle={{ justifyContent: "space-evenly" }}
+        keyExtractor={(_item, index) => index.toString()}
+        ListEmptyComponent={
+          <View
+            style={{
+              flexGrow: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              paddingVertical: 40,
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 20,
+                fontFamily: "TitilliumWeb_600SemiBold",
+              }}
+            >
+              No movies found
+            </Text>
+            <Text
+              style={{
+                color: "#fff",
+                fontFamily: "TitilliumWeb_300Light",
+                textAlign: "center",
+              }}
+            >{`"${searchTerm}" did not match any movie`}</Text>
+          </View>
+        }
       />
     </Layout>
   );

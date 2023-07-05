@@ -16,6 +16,7 @@ interface Props extends PropsWithChildren {
   canGoBack?: boolean;
   title?: string;
   showSearch?: boolean;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Layout({
@@ -23,6 +24,7 @@ export default function Layout({
   children,
   title,
   showSearch,
+  setSearchTerm,
 }: Props) {
   const { goBack } = useNavigation();
   const [isSearchOpen, setSearchOpen] = useState(false);
@@ -78,6 +80,7 @@ export default function Layout({
           <Search
             onOpen={() => setSearchOpen(true)}
             onClose={() => setSearchOpen(false)}
+            onChangeText={setSearchTerm}
           />
         )}
       </View>
@@ -118,6 +121,7 @@ function Search({
       useNativeDriver: true,
     }).start(() => {
       inputRef.current.clear();
+      onChangeText("");
       onClose();
     });
   };
