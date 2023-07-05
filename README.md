@@ -1,6 +1,6 @@
 # The RomCom App
 
-![Screenshots](./screenshots.png)
+![Screenshots](./docs/screenshots.png)
 
 ## What's in the stack
 
@@ -10,6 +10,14 @@
 ## Demo
 
 Scan the QR code below to preview the app in [Expo Go](https://expo.dev/client)
+
+### For Android devices
+
+![Android QR Code](./docs/project-romcom-android-qr-code.png)
+
+### For iOS devices
+
+![iOS QR Code](./docs/project-romcom-ios-qr-code.png)
 
 ## Development
 
