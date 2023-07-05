@@ -39,7 +39,6 @@ export default function LandingScreen({ navigation }: Props) {
         <Pressable
           style={{ marginTop: 12 }}
           onPress={() => navigation.navigate("Home")}
-          r
         >
           <View
             style={{
