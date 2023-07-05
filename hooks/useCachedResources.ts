@@ -1,5 +1,4 @@
 import {
-  TitilliumWeb_200ExtraLight,
   TitilliumWeb_300Light,
   TitilliumWeb_400Regular,
   TitilliumWeb_600SemiBold,
@@ -21,7 +20,6 @@ export default function useCachedResources() {
         // Load fonts
         await Font.loadAsync({
           ...Feather.font,
-          TitilliumWeb_200ExtraLight,
           TitilliumWeb_300Light,
           TitilliumWeb_400Regular,
           TitilliumWeb_600SemiBold,

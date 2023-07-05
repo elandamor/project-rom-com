@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieCard /> renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "flex-start",
+      "margin": 5,
+      "width": 235,
+    }
+  }
+>
+  <Image
+    resizeMode="contain"
+    source={1}
+    style={
+      {
+        "height": 352.5,
+        "width": 235,
+      }
+    }
+  />
+  <Text
+    numberOfLines={1}
+    style={
+      {
+        "color": "#fff",
+        "fontFamily": "TitilliumWeb_300Light",
+        "marginTop": 12,
+      }
+    }
+  >
+    Rear Window
+  </Text>
+</View>
+`;

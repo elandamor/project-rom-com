@@ -1,8 +1,8 @@
 import { RouteProp } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { Layout } from "../components";
-import { windowWidth } from "../constants";
+import { Colors, windowWidth } from "../constants";
 import slices from "../slices";
 import { NavigationParamList } from "../types";
 
@@ -20,10 +20,13 @@ export default function DetailsScreen({ route }: Props) {
       >
         <Image
           source={slices[params["poster-image"].replace(".jpg", "")]}
-          style={styles.poster}
+          style={{
+            height: windowWidth,
+            width: windowWidth,
+          }}
         />
         <LinearGradient
-          colors={["transparent", "#171717"]}
+          colors={["transparent", Colors.background]}
           style={{
             bottom: 0,
             left: 0,
@@ -33,7 +36,16 @@ export default function DetailsScreen({ route }: Props) {
           }}
         />
         <View style={{ bottom: 0, position: "absolute", paddingVertical: 12 }}>
-          <Text style={styles.nameText}>{params.name}</Text>
+          <Text
+            style={{
+              color: "#fff",
+              fontFamily: "TitilliumWeb_700Bold",
+              fontSize: 22,
+              textAlign: "center",
+            }}
+          >
+            {params.name}
+          </Text>
           <Text
             style={{
               color: "#fff",
@@ -58,7 +70,7 @@ export default function DetailsScreen({ route }: Props) {
           >
             <Text
               style={{
-                color: "#171717",
+                color: Colors.background,
                 fontFamily: "TitilliumWeb_600SemiBold",
                 textAlign: "center",
               }}
@@ -71,20 +83,3 @@ export default function DetailsScreen({ route }: Props) {
     </Layout>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#171717",
-  },
-  poster: {
-    height: windowWidth,
-    width: windowWidth,
-  },
-  nameText: {
-    color: "white",
-    fontFamily: "TitilliumWeb_700Bold",
-    fontSize: 22,
-    textAlign: "center",
-  },
-});

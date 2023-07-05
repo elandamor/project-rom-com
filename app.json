@@ -33,6 +33,12 @@
         "projectId": "e1977b12-4eb5-4d7c-8e98-b48dcf11822a"
       }
     },
-    "owner": "elandamor"
+    "owner": "elandamor",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e1977b12-4eb5-4d7c-8e98-b48dcf11822a"
+    }
   }
 }

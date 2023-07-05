@@ -1,22 +1,15 @@
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Fragment, PropsWithChildren, useRef, useState } from "react";
-import {
-  Animated,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Animated, Pressable, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { windowWidth } from "../../constants";
+import { Colors, windowWidth } from "../../constants";
 
 interface Props extends PropsWithChildren {
-  canGoBack?: boolean;
   title?: string;
+  setSearchTerm?: React.Dispatch<React.SetStateAction<string>>;
+  canGoBack?: boolean;
   showSearch?: boolean;
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Layout({
@@ -30,11 +23,16 @@ export default function Layout({
   const [isSearchOpen, setSearchOpen] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: Colors.background,
+      }}
+    >
       <View
         style={{
           alignItems: "center",
-          backgroundColor: "#171717",
+          backgroundColor: Colors.background,
           flexDirection: "row",
           minHeight: 64,
           paddingHorizontal: 8,
@@ -53,7 +51,7 @@ export default function Layout({
             width: 40,
           }}
         >
-          {canGoBack && <Feather name="arrow-left" color="white" size={24} />}
+          {canGoBack && <Feather name="arrow-left" color="#fff" size={24} />}
         </Pressable>
         <View
           style={{
@@ -162,7 +160,7 @@ function Search({
         </Animated.View>
         <Animated.View
           style={{
-            backgroundColor: "#171717",
+            backgroundColor: Colors.background,
             transform: [
               {
                 translateX: slideAnim.interpolate({
@@ -221,10 +219,3 @@ function Search({
     </Fragment>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#171717",
-  },
-});
