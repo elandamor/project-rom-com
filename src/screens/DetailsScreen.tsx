@@ -49,6 +49,7 @@ export default function DetailsScreen({ route }: Props) {
           <Text
             style={{
               color: "#fff",
+              fontFamily: "TitilliumWeb_400Regular",
               fontSize: 12,
               marginVertical: 6,
               opacity: 0.8,

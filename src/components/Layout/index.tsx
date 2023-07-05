@@ -1,7 +1,14 @@
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Fragment, PropsWithChildren, useRef, useState } from "react";
-import { Animated, Pressable, Text, TextInput, View } from "react-native";
+import {
+  Animated,
+  Keyboard,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors, windowWidth } from "../../constants";
 
@@ -98,6 +105,7 @@ function Search({
   onChangeText?: (text: string) => void;
   isOpen?: boolean;
 }) {
+  const initialRef = useRef<View>();
   const inputRef = useRef<TextInput>();
   const slideAnim = useRef(new Animated.Value(0)).current;
 
@@ -113,13 +121,15 @@ function Search({
   };
 
   const slideOut = () => {
+    onChangeText("");
+    Keyboard.dismiss();
+
     Animated.timing(slideAnim, {
       toValue: 0,
       duration: 195,
       useNativeDriver: true,
     }).start(() => {
       inputRef.current.clear();
-      onChangeText("");
       onClose();
     });
   };
