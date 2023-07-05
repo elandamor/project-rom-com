@@ -149,14 +149,6 @@ function Search({
               inputRange: [0, 1],
               outputRange: [1, 0],
             }),
-            // transform: [
-            //   {
-            //     translateX: slideAnim.interpolate({
-            //       inputRange: [0, 1],
-            //       outputRange: [-48, 0],
-            //     }),
-            //   },
-            // ],
           }}
         >
           <Pressable
