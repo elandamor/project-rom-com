@@ -1,5 +1,6 @@
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Image, Pressable, Text, View } from "react-native";
+import { Button, Center, Heading, Text } from "native-base";
+import { Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Colors } from "../constants";
 import slices from "../slices";
@@ -12,56 +13,19 @@ interface Props {
 export default function LandingScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={{ backgroundColor: Colors.background, flex: 1 }}>
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Center flex={1}>
         <Image
           source={slices.movieIcon}
           style={{ height: 100, marginLeft: 24, width: 100 }}
         />
-        <Text
-          style={{
-            color: "#fff",
-            fontFamily: "TitilliumWeb_600SemiBold",
-            fontSize: 22,
-            paddingTop: 12,
-          }}
-        >
+        <Heading fontSize={22} paddingTop={6}>
           RomCom
-        </Text>
-        <Text
-          style={{
-            color: "#fff",
-            fontFamily: "TitilliumWeb_400Regular",
-            paddingTop: 12,
-          }}
-        >
-          Watch the best romentic comedies
-        </Text>
-        <Pressable
-          style={{ marginTop: 12 }}
-          onPress={() => navigation.navigate("Home")}
-        >
-          <View
-            style={{
-              backgroundColor: "#fff",
-              borderRadius: 12,
-              marginHorizontal: 12,
-              marginVertical: 12,
-              paddingHorizontal: 24,
-              paddingVertical: 12,
-            }}
-          >
-            <Text
-              style={{
-                color: Colors.background,
-                fontFamily: "TitilliumWeb_600SemiBold",
-                textAlign: "center",
-              }}
-            >
-              Discover Movies
-            </Text>
-          </View>
-        </Pressable>
-      </View>
+        </Heading>
+        <Text fontWeight={400}>Watch the best romentic comedies</Text>
+        <Button marginTop={6} onPress={() => navigation.navigate("Home")}>
+          Discover Movies
+        </Button>
+      </Center>
     </SafeAreaView>
   );
 }

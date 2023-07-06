@@ -1,6 +1,7 @@
 import { RouteProp } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, Text, View } from "react-native";
+import { Box, Button, Heading, Text } from "native-base";
+import { Image, View } from "react-native";
 import { Layout } from "../components";
 import { Colors, windowWidth } from "../constants";
 import slices from "../slices";
@@ -35,51 +36,15 @@ export default function DetailsScreen({ route }: Props) {
             width: windowWidth,
           }}
         />
-        <View style={{ bottom: 0, position: "absolute", paddingVertical: 12 }}>
-          <Text
-            style={{
-              color: "#fff",
-              fontFamily: "TitilliumWeb_700Bold",
-              fontSize: 22,
-              textAlign: "center",
-            }}
-          >
+        <Box bottom={0} paddingX={3} position="absolute" width={windowWidth}>
+          <Heading fontSize={22} textAlign="center">
             {params.name}
-          </Text>
-          <Text
-            style={{
-              color: "#fff",
-              fontFamily: "TitilliumWeb_400Regular",
-              fontSize: 12,
-              marginVertical: 6,
-              opacity: 0.8,
-              textAlign: "center",
-            }}
-          >
+          </Heading>
+          <Text fontSize={12} fontWeight={400} opacity={0.8} textAlign="center">
             {new Date().getFullYear()} | Romantic Comedy
           </Text>
-          <View
-            style={{
-              backgroundColor: "#fff",
-              borderRadius: 12,
-              marginHorizontal: 12,
-              marginVertical: 12,
-              paddingHorizontal: 24,
-              paddingVertical: 12,
-              width: windowWidth - 24,
-            }}
-          >
-            <Text
-              style={{
-                color: Colors.background,
-                fontFamily: "TitilliumWeb_600SemiBold",
-                textAlign: "center",
-              }}
-            >
-              Watch Now
-            </Text>
-          </View>
-        </View>
+          <Button marginY={4}>Watch Now</Button>
+        </Box>
       </View>
     </Layout>
   );

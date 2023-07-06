@@ -1,6 +1,7 @@
 import { StackNavigationProp } from "@react-navigation/stack";
+import { Center, Heading, Text } from "native-base";
 import { useEffect, useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, Pressable } from "react-native";
 import { Layout, MovieCard } from "../components";
 import { Movie, NavigationParamList } from "../types";
 
@@ -69,31 +70,17 @@ export default function HomeScreen({ navigation }: Props) {
         columnWrapperStyle={{ justifyContent: "space-evenly" }}
         keyExtractor={(_item, index) => index.toString()}
         ListEmptyComponent={
-          <View
+          <Center
             style={{
-              flexGrow: 1,
+              flex: 1,
               alignItems: "center",
               justifyContent: "center",
               paddingVertical: 40,
             }}
           >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 20,
-                fontFamily: "TitilliumWeb_600SemiBold",
-              }}
-            >
-              No movies found
-            </Text>
-            <Text
-              style={{
-                color: "#fff",
-                fontFamily: "TitilliumWeb_300Light",
-                textAlign: "center",
-              }}
-            >{`"${searchTerm}" did not match any movie`}</Text>
-          </View>
+            <Heading fontSize={20}>No movies found</Heading>
+            <Text textAlign="center">{`"${searchTerm}" did not match any movie`}</Text>
+          </Center>
         }
       />
     </Layout>

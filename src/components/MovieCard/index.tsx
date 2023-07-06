@@ -1,4 +1,5 @@
-import { Image, Text, View } from "react-native";
+import { Box, Text } from "native-base";
+import { Image } from "react-native";
 import { windowWidth } from "../../constants";
 import slices from "../../slices";
 import { Movie } from "../../types";
@@ -10,14 +11,9 @@ export default function MovieCard({ data }: { data: Movie }) {
   const placeholderSource = slices["placeholderPoster"];
 
   return (
-    <View
-      style={{
-        alignItems: "flex-start",
-        margin: 5,
-        width: cardWidth,
-      }}
-    >
+    <Box margin={1} width={cardWidth}>
       <Image
+        testID="movie-poster"
         resizeMode="contain"
         source={imageSource ?? placeholderSource}
         style={{
@@ -25,16 +21,9 @@ export default function MovieCard({ data }: { data: Movie }) {
           width: cardWidth,
         }}
       />
-      <Text
-        style={{
-          color: "#fff",
-          fontFamily: "TitilliumWeb_300Light",
-          marginTop: 12,
-        }}
-        numberOfLines={1}
-      >
+      <Text testID="movie-name" marginTop={3} numberOfLines={1}>
         {data.name}
       </Text>
-    </View>
+    </Box>
   );
 }
