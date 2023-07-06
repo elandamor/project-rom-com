@@ -5,6 +5,7 @@
 ## What's in the stack
 
 - Built with [React Native](https://reactnative.dev) using [Expo](https://docs.expo.dev)
+- Component library with [NativeBase](https://nativebase.io)
 - Static Types with [TypeScript](https://typescriptlang.org)
 
 ## Demo
