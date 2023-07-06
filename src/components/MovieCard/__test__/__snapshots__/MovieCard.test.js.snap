@@ -1,36 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MovieCard /> renders correctly 1`] = `
-<View
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
   style={
-    {
-      "alignItems": "flex-start",
-      "margin": 5,
-      "width": 235,
-    }
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
   }
 >
-  <Image
-    resizeMode="contain"
-    source={1}
+  <View
+    dataSet={{}}
     style={
       {
-        "height": 352.5,
+        "marginBottom": 4,
+        "marginLeft": 4,
+        "marginRight": 4,
+        "marginTop": 4,
         "width": 235,
       }
     }
-  />
-  <Text
-    numberOfLines={1}
-    style={
-      {
-        "color": "#fff",
-        "fontFamily": "TitilliumWeb_300Light",
-        "marginTop": 12,
-      }
-    }
   >
-    Rear Window
-  </Text>
-</View>
+    <Image
+      resizeMode="contain"
+      source={1}
+      style={
+        {
+          "height": 352.5,
+          "width": 235,
+        }
+      }
+      testID="movie-poster"
+    />
+    <Text
+      dataSet={{}}
+      numberOfLines={1}
+      style={
+        {
+          "backgroundColor": undefined,
+          "color": "#171717",
+          "fontFamily": undefined,
+          "fontSize": 14,
+          "fontStyle": "normal",
+          "fontWeight": "400",
+          "letterSpacing": 0,
+          "lineHeight": 21,
+          "marginTop": 12,
+          "textDecorationLine": undefined,
+        }
+      }
+      testID="movie-name"
+    >
+      Rear Window
+    </Text>
+  </View>
+</RNCSafeAreaProvider>
 `;
